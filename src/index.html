@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>queue patients</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
@@ -13,15 +14,30 @@
   </header>
   <main>
     <section class="output-datas">
-
+      <table class="patients-list">
+        <thead>
+          <tr>
+            <th colspan="8">nome</th>
+            <th>status</th>
+            <th>posição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td colspan="8">nome do paciente</td>
+            <td>status</td>
+            <td>posição</td>
+          </tr>
+        </tbody>
+      </table>
     </section>
     <section class="input-datas">
       <p>Selecione o que deseja fazer</p>
       <div class="buttons">
-        <button>Adicionar pacientes</button>
-        <button>Remover pacientes</button>
-        <button>Consultar pacientes</button>
-        <button>Atualizar dados do pacientes</button>
+        <button class="btn btn-add">Adicionar pacientes</button>
+        <button class="btn btn-view">Consultar pacientes</button>
+        <button class="btn btn-update">Atualizar dados do pacientes</button>
+        <button class="btn btn-delete">Remover pacientes</button>
       </div>
     </section>
   </main>

@@ -1,0 +1,86 @@
+:root{
+  --gray: #3337;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header h1{
+  text-align: center;
+  padding: 10px;
+}
+
+main{
+  width: 100vw;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  padding: 0 1rem;
+}
+
+.patients-list{
+  width: 100%;
+  height: max-content;
+  border-collapse: collapse;
+  border: 1px solid var(--gray);
+}
+
+.patients-list thead tr th,
+.patients-list tbody tr td{
+  text-align: start;
+  text-indent: 10px;
+  border: 1px solid var(--gray);
+  padding: 5px;
+}
+
+.output-datas{
+  width: 100%;
+  flex-grow: 1;
+}
+
+.input-datas{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0 1rem;
+  align-items: center;
+  font-size: 1.5rem;
+}
+
+.buttons{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.btn{
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn-add {
+  background-color: #28a745; 
+}
+
+.btn-view {
+  background-color: #007bff; 
+}
+
+.btn-update {
+  background-color: #fd7e14; 
+}
+
+.btn-delete {
+  background-color: #dc3545;
+}
+
+.btn:hover {
+  opacity: 0.8;
+}
