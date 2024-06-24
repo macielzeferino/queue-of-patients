@@ -39,6 +39,42 @@
         <button class="btn btn-update">Atualizar dados do pacientes</button>
         <button class="btn btn-delete">Remover pacientes</button>
       </div>
+      <form action="#" class="hidden">
+        <div>
+          <label for="name">Nome do paciente: </label>
+          <input type="text" name="name" id="name">
+        </div><br>
+        <fieldset>
+          <legend>Status:</legend>
+          <div>
+            <input type="radio" name="status" id="single" value="single">
+            <label for="single">em fila</label>
+          </div>
+          <div>
+            <input type="radio" name="status" id="married" value="married">
+            <label for="married">consultando</label>
+          </div>
+          <div>
+            <input type="radio" name="status" id="divorced" value="divorced">
+            <label for="divorced">em observação</label>
+          </div>
+          <div>
+            <input type="radio" name="status" id="widowed" value="widowed">
+            <label for="widowed">consultado</label>
+          </fieldset>
+        </div><br>
+        <fieldset>
+          <legend>Gênero:</legend>
+          <div>
+            <input type="radio" name="gender" id="M" value="M">
+            <label for="M">Masculino</label>
+          </div>
+          <div>
+            <input type="radio" name="gender" id="F" value="F">
+            <label for="F">Feminino</label>
+          </div>
+        </fieldset>
+      </form>
     </section>
   </main>
 </body>
