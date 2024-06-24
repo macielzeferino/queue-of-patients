@@ -3,9 +3,9 @@ const Patients = require ("../models/patients")
 
 module.exports = {
   async store (req, res) {
-    const {name, sex } = req.body;
+    const {name, sex, status } = req.body;
 
-    const patients = await Patients.create({name, sex});
+    const patients = await Patients.create({name, sex, status});
     return res.json(patients);
   },
 
@@ -16,9 +16,9 @@ module.exports = {
   },
 
   async put (req, res ) {
-    const {name, size, sex} = req.body;
+    const {name, sex, status} = req.body;
     await Patients.update (
-      {name, size, sex},
+      {name, sex, status},
       {
         where : {
           id : req.params.id,
