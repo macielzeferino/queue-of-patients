@@ -1,6 +1,4 @@
-/* export function addNewPatient() {
 
-} */
 const apiUrl = 'http://localhost:3000/patients';
 
 // Função para adicionar dados
