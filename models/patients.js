@@ -9,6 +9,9 @@ const Patient = sequelize.define("patients", {
   sex: {
     type: DataTypes.INTEGER,
     allowNull: false
+  }, status: {
+    type: DataTypes.INTEGER,
+    allowNull: false
   }
 });
 
