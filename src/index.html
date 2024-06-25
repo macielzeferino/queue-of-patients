@@ -70,24 +70,17 @@
       <fieldset>
         <legend>Gênero:</legend>
         <div>
-          <input type="radio" name="gender" id="M" value="M">
+          <input type="radio" name="sex" id="M" value="M">
           <label for="M">Masculino</label>
         </div>
         <div>
-          <input type="radio" name="gender" id="F" value="F">
+          <input type="radio" name="sex" id="F" value="F">
           <label for="F">Feminino</label>
         </div>
       </fieldset>
       <button type="submit">enviar</button>
     </form>
   </main>
-  <script>
-    document.querySelector(".btn-add").addEventListener("click", () => {
-      const form = document.querySelector("#formData")
-      if(form.classList == "hidden") {
-        form.classList.remove("hidden")
-      }
-    })
-  </script>
+  <script src="../services/patientManagement.js"></script>
 </body>
 </html>

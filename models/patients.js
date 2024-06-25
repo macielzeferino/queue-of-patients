@@ -7,10 +7,10 @@ const Patient = sequelize.define("patients", {
     allowNull: false
   },
   sex: {
-    type: DataTypes.INTEGER,
-    allowNull: false
+    type: DataTypes.STRING,
+    allowNull: false,
   }, status: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     allowNull: false
   }
 });

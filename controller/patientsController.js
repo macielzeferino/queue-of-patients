@@ -2,12 +2,19 @@ const { where } = require("sequelize");
 const Patients = require ("../models/patients")
 
 module.exports = {
-  async store (req, res) {
-    const {name, sex, status } = req.body;
+  async store(req, res) {
+    try {
+        const { name, sex, status } = req.body;
 
-    const patients = await Patients.create({name, sex, status});
-    return res.json(patients);
-  },
+        // Cria o paciente no banco de dados
+        const patient = await Patients.create({ name, sex, status });
+
+        return res.json(patient);
+    } catch (error) {
+        console.error('Error creating patient:', error);
+        return res.status(500).json({ error: 'Failed to create patient' });
+    }
+},
 
   async index(req, res) {
     const patients = await Patients.findAll();
