@@ -79,9 +79,16 @@
       </fieldset>
       <button type="submit">enviar</button>
     </form>
-   <div class="hidden" id="input-delete"> <br>
+   <div class="hidden" id="input-delete">
+     <br>
      <label for="idPatient">Digite o id do paciente que deseja remover</label>
     <input type="text" name="idPatient" id="idPatient">
+  </div>
+  <div class="hidden" id="input-view">
+    <br>
+    <label for="idSearch">Digite o ID do paciente que deseja consultar:</label>
+    <input type="text" name="idView" id="idView">
+    <button id="searchButton">Consultar</button>
   </div>
   </main>
   <script src="../services/patientManagement.js"></script>
