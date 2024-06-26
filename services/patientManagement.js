@@ -1,4 +1,5 @@
 
+//add patient 
 document.querySelector(".btn-add").addEventListener("click", () => {
     const form = document.querySelector("#formData")
     if(form.classList.contains("hidden")) {
@@ -38,3 +39,42 @@ document.querySelector(".btn-add").addEventListener("click", () => {
         console.error('Error fetching data:', error);
     });
     })
+    
+//remove patient
+
+document.querySelector(".btn-delete").addEventListener("click", () => {
+    const form = document.querySelector("#input-delete")
+    if(form.classList.contains("hidden")) {
+      form.classList.remove("hidden")
+    }
+  });
+
+  document.querySelector(".btn-delete").addEventListener("click", ()=>{
+    const idPatient = document.querySelector("#idPatient").value;
+
+    fetch(`http://localhost:3000/patients/${idPatient}`, {
+        method : 'DELETE',
+        headers :{
+            'Content-Type': 'aplication/json'
+        }
+    })
+    .then(response=>{
+        if (!response.ok) {
+            throw new Error('Network response was not ok')
+        }
+        const contentType = response.headers.get("content-type");
+    if (contentType && contentType.includes("application/json")) {
+      return response.json();
+    } else {
+      return response.text();
+    }
+    })
+    .then(result=> {
+        console.log('Sucess', result);
+        alert(`Paciente de id ${idPatient} deletado `);
+    })
+    .catch(error=> {
+        console.error("error fetching data", error);
+        alert("erro ao deletar paciente")
+    });
+ });
