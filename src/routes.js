@@ -7,6 +7,7 @@ const patientsController = require("../controller/patientsController")
 
 routes.post("/patients", patientsController.store);
 routes.get("/patients/:id", patientsController.index);
+routes.get("/patients", patientsController.list);
 routes.put("/patients/:id", patientsController.put);
 routes.delete("/patients/:id", patientsController.delete);
 

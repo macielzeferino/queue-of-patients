@@ -54,5 +54,17 @@ module.exports = {
       },
     });
     res.send("Paciente deletado");
-  },
+  }, 
+  async list(req, res) {
+    try {
+        console.log("Buscando pacientes...");
+        const patients = await Patients.findAll(); // Buscar todos os pa  cientes na tabela
+
+        // Retornar os pacientes encontrados como resposta JSON
+        return res.json(patients);
+    } catch (error) {
+        console.error("Erro ao buscar pacientes:", error); // Log de erro detalhado
+        return res.status(500).json({ error: 'Erro ao buscar pacientes' });
+    }
+}
 };
