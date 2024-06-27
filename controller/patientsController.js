@@ -37,7 +37,14 @@ module.exports = {
         },
       }
     );
-    return res.send("paciente corrigido");
+
+    const updatedPatient = await Patients.findByPk(req.params.id);
+    if (!updatedPatient) {
+      return res.status(404).json({ error: 'Paciente não encontrado' });
+    }
+  
+    // Retornar os dados atualizados do paciente como JSON
+    return res.json(updatedPatient);
   },
 
   async delete(req, res) {

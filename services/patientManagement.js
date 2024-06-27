@@ -117,3 +117,50 @@ document.querySelector(".btn-view").addEventListener("click", () => {
       alert("Erro ao consultar paciente. Verifique o ID e tente novamente.");
     });
 });
+
+// patient updated
+
+document.querySelector(".btn-update").addEventListener("click", () => {
+    const form = document.querySelector("#input-update");
+    if (form.classList.contains("hidden")) {
+      form.classList.remove("hidden");
+    }
+  });
+  
+  document.querySelector("#updateForm").addEventListener("submit", (event) => {
+    event.preventDefault();
+  
+    const idUpdate = document.querySelector("#idUpdate").value;
+    const nameUpdate = document.querySelector("#nameUpdate").value;
+    const sexUpdate = document.querySelector("#sexUpdate").value;
+    const statusUpdate = document.querySelector("#statusUpdate").value;
+  
+    const updatedData = {
+      name: nameUpdate,
+      sex: sexUpdate,
+      status: statusUpdate
+    };
+  
+    fetch(`http://localhost:3000/patients/${idUpdate}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(updatedData)
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(result => {
+      console.log('Paciente atualizado:', result);
+      alert(`Paciente de ID ${idUpdate} atualizado com sucesso.`);
+      // Pode realizar outras ações após a atualização, se necessário
+    })
+    .catch(error => {
+      console.error('Erro ao atualizar paciente:', error);
+      alert('Erro ao atualizar paciente. Verifique os dados e tente novamente.');
+    });
+  });
