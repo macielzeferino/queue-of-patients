@@ -1,8 +1,9 @@
 //add patient
+
 document.querySelector(".btn-add").addEventListener("click", () => {
   const form = document.querySelector("#formData");
-  if (form.classList.contains("hidden")) {
-    form.classList.remove("hidden");
+  if (form.style.display === "none" || form.style.display === "") {
+    form.style.display = "block"; // Exibe o formulário se estiver oculto ou não definido
   }
 });
 
@@ -32,10 +33,12 @@ document.querySelector("#formData").addEventListener("submit", (event) => {
     })
     .then((result) => {
       console.log("Success:", result);
+      document.getElementById("formData").style.display = "none";
     })
     .catch((error) => {
       console.error("Error fetching data:", error);
     });
+
 });
 
 //remove patient

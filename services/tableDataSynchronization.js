@@ -1,7 +1,5 @@
-setInterval(fetchData, 1000); 
-document.addEventListener('DOMContentLoaded', function () {
-  fetchData();
-});
+setInterval(fetchData, 10000)
+
 
 function fetchData() {
   fetch('http://localhost:3000/patients') // URL para buscar todos os pacientes
@@ -42,6 +40,5 @@ function renderTable(data) {
       tableBody.appendChild(row);
   });
 }
-
 
 
