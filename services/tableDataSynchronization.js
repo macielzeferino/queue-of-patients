@@ -1,6 +1,5 @@
 setInterval(fetchData, 10000)
 
-
 function fetchData() {
   fetch('http://localhost:3000/patients') // URL para buscar todos os pacientes
       .then(response => {

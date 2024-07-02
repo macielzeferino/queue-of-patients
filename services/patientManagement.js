@@ -3,7 +3,7 @@
 document.querySelector(".btn-add").addEventListener("click", () => {
   const form = document.querySelector("#formData");
   if (form.style.display === "none" || form.style.display === "") {
-    form.style.display = "block"; // Exibe o formulário se estiver oculto ou não definido
+    form.style.display = "block";
   }
 });
 
@@ -33,7 +33,7 @@ document.querySelector("#formData").addEventListener("submit", (event) => {
     })
     .then((result) => {
       console.log("Success:", result);
-      document.getElementById("formData").style.display = "none";
+      document.querySelector("#formData").style.display = "none";
     })
     .catch((error) => {
       console.error("Error fetching data:", error);
@@ -45,13 +45,16 @@ document.querySelector("#formData").addEventListener("submit", (event) => {
 
 document.querySelector(".btn-delete").addEventListener("click", () => {
   const form = document.querySelector("#input-delete");
-  if (form.classList.contains("hidden")) {
-    form.classList.remove("hidden");
+  if (form.style.display === "none" || form.style.display === "") {
+    form.style.display = "block";
   }
 });
 
 document.querySelector(".btn-delete").addEventListener("click", () => {
   const idPatient = document.querySelector("#idPatient").value;
+  if(idPatient===""){
+    return
+  }
 
   fetch(`http://localhost:3000/patients/${idPatient}`, {
     method: "DELETE",
@@ -73,11 +76,13 @@ document.querySelector(".btn-delete").addEventListener("click", () => {
     .then((result) => {
       console.log("Sucess", result);
       alert(`Paciente de id ${idPatient} deletado `);
+      document.querySelector("#input-delete").style.display = "none";
     })
     .catch((error) => {
       console.error("error fetching data", error);
       alert("erro ao deletar paciente");
     });
+    document.querySelector("#idPatient").value="";
 });
 
 // consult patient
