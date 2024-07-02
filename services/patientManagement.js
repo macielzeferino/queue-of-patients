@@ -134,8 +134,8 @@ document.querySelector(".btn-view").addEventListener("click", () => {
 
 document.querySelector(".btn-update").addEventListener("click", () => {
   const form = document.querySelector("#input-update");
-  if (form.classList.contains("hidden")) {
-    form.classList.remove("hidden");
+  if (form.style.display === "none" || form.style.display === "") {
+    form.style.display = "block";
   }
 });
 
@@ -153,6 +153,14 @@ document.querySelector("#updateForm").addEventListener("submit", (event) => {
     status: statusUpdate,
   };
 
+  if (
+    updatedData.name === "" ||
+    updatedData.sex === "" ||
+    updatedData.status === ""
+  ) {
+    return;
+  }
+
   fetch(`http://localhost:3000/patients/${idUpdate}`, {
     method: "PUT",
     headers: {
@@ -169,6 +177,7 @@ document.querySelector("#updateForm").addEventListener("submit", (event) => {
     .then((result) => {
       console.log("Paciente atualizado:", result);
       alert(`Paciente de ID ${idUpdate} atualizado com sucesso.`);
+      document.querySelector("#input-update").style.display = "none";
       // Pode realizar outras ações após a atualização, se necessário
     })
     .catch((error) => {
@@ -177,4 +186,8 @@ document.querySelector("#updateForm").addEventListener("submit", (event) => {
         "Erro ao atualizar paciente. Verifique os dados e tente novamente."
       );
     });
+  document.querySelector("#idUpdate").value="";
+  document.querySelector("#nameUpdate").value="";
+  document.querySelector("#sexUpdate").value="";
+  document.querySelector("#statusUpdate").value="";
 });
