@@ -3,14 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>queue patients</title>
+  <title>Queue Patients</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-    <h1>
-      Fila de pacientes
-    </h1>
+    <h1>Fila de pacientes</h1>
   </header>
   <main>
     <section class="output-datas">
@@ -24,9 +22,11 @@
           </tr>
         </thead>
         <tbody>
+          <!-- Dynamic content here -->
         </tbody>
       </table>
     </section>
+    
     <section class="input-datas">
       <p>Selecione o que deseja fazer</p>
       <div class="buttons">
@@ -36,69 +36,92 @@
         <button class="btn btn-delete">Remover pacientes</button>
       </div>
     </section>
-    <form action="#" class="hidden" id="formData">
-      <div>
-        <label for="name">Nome do paciente: </label>
-        <input type="text" name="name" id="name">
-      </div><br>
-      <fieldset>
-        <legend>Status:</legend>
-        <div>
-          <input type="radio" name="status" id="single" value="single">
-          <label for="single">em fila</label>
-        </div>
-        <div>
-          <input type="radio" name="status" id="married" value="married">
-          <label for="married">consultando</label>
-        </div>
-        <div>
-          <input type="radio" name="status" id="divorced" value="divorced">
-          <label for="divorced">em observação</label>
-        </div>
-        <div>
-          <input type="radio" name="status" id="widowed" value="widowed">
-          <label for="widowed">consultado</label>
-        </fieldset>
-      </div><br>
-      <fieldset>
-        <legend>Gênero:</legend>
-        <div>
-          <input type="radio" name="sex" id="M" value="M">
-          <label for="M">Masculino</label>
-        </div>
-        <div>
-          <input type="radio" name="sex" id="F" value="F">
-          <label for="F">Feminino</label>
-        </div>
-      </fieldset>
-      <button type="submit">enviar</button>
-    </form>
-   <div class="hidden" id="input-delete">
-     <br>
-     <label for="idPatient">Digite o id do paciente que deseja remover</label>
-    <input type="text" name="idPatient" id="idPatient">
-  </div>
-  <div class="hidden" id="input-view">
-    <br>
-    <label for="idSearch">Digite o ID do paciente que deseja consultar:</label>
-    <input type="text" name="idView" id="idView">
-    <button id="searchButton">Consultar</button>
-  </div>
-  <div class="hidden" id="input-update">
-    <form  id="updateForm">
-      <label for="idUpdate">Digite o ID do paciente que deseja atualizar:</label>
-      <input type="text" name="idUpdate" id="idUpdate">
-      <label for="nameUpdate">Novo nome:</label>
-      <input type="text" name="nameUpdate" id="nameUpdate">
-      <label for="sexUpdate">Novo sexo:</label>
-      <input type="text" name="sexUpdate" id="sexUpdate">
-      <label for="statusUpdate">Novo status:</label>
-      <input type="text" name="statusUpdate" id="statusUpdate">
-      <button type="submit">Atualizar Paciente</button>
-    </form>
-  </div>
+
+    <div class="modal hidden" id="formAdd">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <form action="#">
+          <div>
+            <label for="name">Nome do paciente:</label>
+            <input type="text" name="name" id="name">
+          </div>
+          <br>
+          <fieldset>
+            <legend>Status:</legend>
+            <div>
+              <input type="radio" name="status" id="single" value="single">
+              <label for="single">em fila</label>
+            </div>
+            <div>
+              <input type="radio" name="status" id="married" value="married">
+              <label for="married">consultando</label>
+            </div>
+            <div>
+              <input type="radio" name="status" id="divorced" value="divorced">
+              <label for="divorced">em observação</label>
+            </div>
+            <div>
+              <input type="radio" name="status" id="widowed" value="widowed">
+              <label for="widowed">consultado</label>
+            </div>
+          </fieldset>
+          <br>
+          <fieldset>
+            <legend>Gênero:</legend>
+            <div>
+              <input type="radio" name="sex" id="M" value="M">
+              <label for="M">Masculino</label>
+            </div>
+            <div>
+              <input type="radio" name="sex" id="F" value="F">
+              <label for="F">Feminino</label>
+            </div>
+          </fieldset>
+          <button type="submit">enviar</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal hidden" id="formView">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <form action="#">
+          <label for="idView">Digite o ID do paciente que deseja consultar:</label>
+          <input type="text" name="idView" id="idView">
+          <button id="searchButton">Consultar</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal hidden" id="formUpdate">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <form id="updateForm">
+          <label for="idUpdate">Digite o ID do paciente que deseja atualizar:</label>
+          <input type="text" name="idUpdate" id="idUpdate">
+          <label for="nameUpdate">Novo nome:</label>
+          <input type="text" name="nameUpdate" id="nameUpdate">
+          <label for="sexUpdate">Novo sexo:</label>
+          <input type="text" name="sexUpdate" id="sexUpdate">
+          <label for="statusUpdate">Novo status:</label>
+          <input type="text" name="statusUpdate" id="statusUpdate">
+          <button type="submit">Atualizar Paciente</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal hidden" id="formDelete">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <form action="#">
+          <label for="idPatient">Digite o id do paciente que deseja remover:</label>
+          <input type="text" name="idPatient" id="idPatient">
+          <button type="submit">Remover</button>
+        </form>
+      </div>
+    </div>
   </main>
-  <script  src="../services/patientManagement.js"></script>
-  <script  src="../services/tableDataSynchronization.js"></script>
+  <script src="../services/patientManagement.js"></script>
+  <script src="../services/tableDataSynchronization.js"></script>
 </body>
 </html>
