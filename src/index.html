@@ -26,7 +26,7 @@
         </tbody>
       </table>
     </section>
-    
+
     <section class="input-datas">
       <p>Selecione o que deseja fazer</p>
       <div class="buttons">
@@ -40,7 +40,7 @@
     <div class="modal hidden" id="formAdd">
       <div class="modal-content">
         <span class="close">&times;</span>
-        <form action="#">
+        <form id="formData">
           <div>
             <label for="name">Nome do paciente:</label>
             <input type="text" name="name" id="name">
@@ -85,7 +85,7 @@
     <div class="modal hidden" id="formView">
       <div class="modal-content">
         <span class="close">&times;</span>
-        <form action="#">
+        <form id="input-view">
           <label for="idView">Digite o ID do paciente que deseja consultar:</label>
           <input type="text" name="idView" id="idView">
           <button id="searchButton">Consultar</button>
@@ -93,10 +93,10 @@
       </div>
     </div>
 
-    <div class="modal hidden" id="formUpdate">
+    <!-- <div class="modal hidden" id="formUpdate">
       <div class="modal-content">
         <span class="close">&times;</span>
-        <form id="updateForm">
+        <form id="formUpdate">
           <label for="idUpdate">Digite o ID do paciente que deseja atualizar:</label>
           <input type="text" name="idUpdate" id="idUpdate">
           <label for="nameUpdate">Novo nome:</label>
@@ -108,12 +108,62 @@
           <button type="submit">Atualizar Paciente</button>
         </form>
       </div>
+    </div> -->
+
+    <div class="modal hidden" id="formUpdate">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <form id="formUpdate">
+          <div>
+            <label for="idUpdate">Digite o ID do paciente que deseja atualizar:</label>
+            <input type="text" name="idUpdate" id="idUpdate">
+          </div>
+          <br>
+          <div>
+            <label for="nameUpdate">Nome do paciente:</label>
+            <input type="text" name="nameUpdate" id="nameUpdate">
+          </div>
+          <br>
+          <fieldset>
+            <legend>Status:</legend>
+            <div>
+              <input type="radio" name="statusUpdate" id="singleUpdate" value="single">
+              <label for="singleUpdate">em fila</label>
+            </div>
+            <div>
+              <input type="radio" name="statusUpdate" id="marriedUpdate" value="married">
+              <label for="marriedUpdate">consultando</label>
+            </div>
+            <div>
+              <input type="radio" name="statusUpdate" id="divorcedUpdate" value="divorced">
+              <label for="divorcedUpdate">em observação</label>
+            </div>
+            <div>
+              <input type="radio" name="statusUpdate" id="widowedUpdate" value="widowed">
+              <label for="widowedUpdate">consultado</label>
+            </div>
+          </fieldset>
+          <br>
+          <fieldset>
+            <legend>Gênero:</legend>
+            <div>
+              <input type="radio" name="sexUpdate" id="MUpdate" value="M">
+              <label for="MUpdate">Masculino</label>
+            </div>
+            <div>
+              <input type="radio" name="sexUpdate" id="FUpdate" value="F">
+              <label for="FUpdate">Feminino</label>
+            </div>
+          </fieldset>
+          <button type="submit">Enviar</button>
+        </form>
+      </div>
     </div>
 
     <div class="modal hidden" id="formDelete">
       <div class="modal-content">
         <span class="close">&times;</span>
-        <form action="#">
+        <form id="input-delete">
           <label for="idPatient">Digite o id do paciente que deseja remover:</label>
           <input type="text" name="idPatient" id="idPatient">
           <button type="submit">Remover</button>

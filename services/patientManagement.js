@@ -1,193 +1,180 @@
-//add patient
+document.addEventListener("DOMContentLoaded", () => {
+  // Show Add Patient Form
+  document.querySelector(".btn-add").addEventListener("click", () => {
+    const form = document.querySelector("#formAdd");
+    form.classList.remove("hidden");
+  });
 
-document.querySelector(".btn-add").addEventListener("click", () => {
-  const form = document.querySelector("#formData");
-  if (form.style.display === "none" || form.style.display === "") {
-    form.style.display = "block";
-  }
-});
+  // Add Patient
+  document.querySelector("#formData").addEventListener("submit", (event) => {
+    event.preventDefault();
+    const name = document.querySelector("#name").value;
+    const status = document.querySelector('input[name="status"]:checked').value;
+    const sex = document.querySelector('input[name="sex"]:checked').value;
+    const patientData = {
+      name: name,
+      status: status,
+      sex: sex,
+    };
 
-document.querySelector("#formData").addEventListener("submit", (event) => {
-  event.preventDefault();
-  const name = document.querySelector("#name").value;
-  const status = document.querySelector('input[name="status"]:checked').value;
-  const sex = document.querySelector('input[name="sex"]:checked').value;
-  const patientData = {
-    name: name,
-    status: status,
-    sex: sex,
-  };
-
-  fetch("http://localhost:3000/patients", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(patientData),
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      return response.json();
+    fetch("http://localhost:3000/patients", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(patientData),
     })
-    .then((result) => {
-      console.log("Success:", result);
-      document.querySelector("#formData").style.display = "none";
-    })
-    .catch((error) => {
-      console.error("Error fetching data:", error);
-    });
-});
-
-//remove patient
-
-document.querySelector(".btn-delete").addEventListener("click", () => {
-  const form = document.querySelector("#input-delete");
-  if (form.style.display === "none" || form.style.display === "") {
-    form.style.display = "block";
-  }
-});
-
-document.querySelector(".btn-delete").addEventListener("click", () => {
-  const idPatient = document.querySelector("#idPatient").value;
-  if (idPatient === "") {
-    return;
-  }
-
-  fetch(`http://localhost:3000/patients/${idPatient}`, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "aplication/json",
-    },
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      const contentType = response.headers.get("content-type");
-      if (contentType && contentType.includes("application/json")) {
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
         return response.json();
-      } else {
-        return response.text();
-      }
-    })
-    .then((result) => {
-      console.log("Sucess", result);
-      alert(`Paciente de id ${idPatient} deletado `);
-      document.querySelector("#input-delete").style.display = "none";
-    })
-    .catch((error) => {
-      console.error("error fetching data", error);
-      alert("erro ao deletar paciente");
-    });
-  document.querySelector("#idPatient").value = "";
-});
-
-// consult patient
-
-document.querySelector(".btn-view").addEventListener("click", () => {
-  const form = document.querySelector("#input-view");
-  if (form.style.display === "none" || form.style.display === "") {
-    form.style.display = "block";
-  }
-});
-
-document.querySelector(".btn-view").addEventListener("click", () => {
-  const idView = document.querySelector("#idView").value;
-  if (idView === "") {
-    return;
-  }
-
-  fetch(`http://localhost:3000/patients/${idView}`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      return response.json();
-    })
-    .then((result) => {
-      console.log("Resultado da requisição:", result);
-      if (result && result.name && result.status && result.sex) {
+      })
+      .then((result) => {
         console.log("Success:", result);
-        alert(
-          `Paciente encontrado: Nome: ${result.name}, Status: ${result.status}, Sexo: ${result.sex}`
-        );
-        document.querySelector("#input-view").style.display = "none";
-      } else {
-        throw new Error("Dados do paciente incompletos ou incorretos");
-      }
+        document.querySelector("#formAdd").classList.add("hidden");
+        document.querySelector("#formData").reset(); // Clear form inputs
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  });
+
+  // Show Remove Patient Form
+  document.querySelector(".btn-delete").addEventListener("click", () => {
+    const form = document.querySelector("#formDelete");
+    form.classList.remove("hidden");
+  });
+
+  // Remove Patient
+  document.querySelector("#input-delete").addEventListener("submit", (event) => {
+    event.preventDefault();
+    const idPatient = document.querySelector("#idPatient").value;
+    if (idPatient === "") {
+      return;
+    }
+
+    fetch(`http://localhost:3000/patients/${idPatient}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
     })
-    .catch((error) => {
-      console.error("Error fetching data:", error);
-      alert("Erro ao consultar paciente. Verifique o ID e tente novamente.");
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((result) => {
+        console.log("Success", result);
+        alert(`Paciente de id ${idPatient} deletado`);
+        document.querySelector("#formDelete").classList.add("hidden");
+        document.querySelector("#input-delete").reset(); // Clear form inputs
+      })
+      .catch((error) => {
+        console.error("Error fetching data", error);
+        alert("Erro ao deletar paciente");
+      });
+  });
+
+  // Show View Patient Form
+  document.querySelector(".btn-view").addEventListener("click", () => {
+    const form = document.querySelector("#formView");
+    form.classList.remove("hidden");
+  });
+
+  // View Patient
+  document.querySelector("#input-view").addEventListener("submit", (event) => {
+    event.preventDefault();
+    const idView = document.querySelector("#idView").value;
+    if (idView === "") {
+      return;
+    }
+
+    fetch(`http://localhost:3000/patients/${idView}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((result) => {
+        console.log("Resultado da requisição:", result);
+        if (result && result.name && result.status && result.sex) {
+          console.log("Success:", result);
+          alert(
+            `Paciente encontrado: Nome: ${result.name}, Status: ${result.status}, Sexo: ${result.sex}`
+          );
+          document.querySelector("#formView").classList.add("hidden");
+          document.querySelector("#input-view").reset(); // Clear form inputs
+        } else {
+          alert("Paciente não encontrado");
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  });
+
+  document.addEventListener("DOMContentLoaded", () => {
+    // Mostrar formulário de atualização
+    document.querySelector(".btn-update").addEventListener("click", () => {
+      const form = document.querySelector("#formUpdate");
+      form.classList.remove("hidden");
     });
-  document.querySelector("#idView").value = "";
-});
-
-// patient updated
-
-document.querySelector(".btn-update").addEventListener("click", () => {
-  const form = document.querySelector("#input-update");
-  if (form.style.display === "none" || form.style.display === "") {
-    form.style.display = "block";
-  }
-});
-
-document.querySelector("#updateForm").addEventListener("submit", (event) => {
-  event.preventDefault();
-
-  const idUpdate = document.querySelector("#idUpdate").value;
-  const nameUpdate = document.querySelector("#nameUpdate").value;
-  const sexUpdate = document.querySelector("#sexUpdate").value;
-  const statusUpdate = document.querySelector("#statusUpdate").value;
-
-  const updatedData = {
-    name: nameUpdate,
-    sex: sexUpdate,
-    status: statusUpdate,
-  };
-
-  if (
-    updatedData.name === "" ||
-    updatedData.sex === "" ||
-    updatedData.status === ""
-  ) {
-    return;
-  }
-
-  fetch(`http://localhost:3000/patients/${idUpdate}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(updatedData),
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      return response.json();
-    })
-    .then((result) => {
-      console.log("Paciente atualizado:", result);
-      alert(`Paciente de ID ${idUpdate} atualizado com sucesso.`);
-      document.querySelector("#input-update").style.display = "none";
-      // Pode realizar outras ações após a atualização, se necessário
-    })
-    .catch((error) => {
-      console.error("Erro ao atualizar paciente:", error);
-      alert(
-        "Erro ao atualizar paciente. Verifique os dados e tente novamente."
-      );
+  
+    // Atualizar paciente
+    document.querySelector("#formUpdate").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const idUpdate = document.querySelector("#idUpdate").value;
+      const nameUpdate = document.querySelector("#nameUpdate").value;
+      const statusUpdate = document.querySelector('input[name="statusUpdate"]:checked').value;
+      const sexUpdate = document.querySelector('input[name="sexUpdate"]:checked').value;
+      const patientUpdateData = {
+        name: nameUpdate,
+        status: statusUpdate,
+        sex: sexUpdate,
+      };
+  
+      fetch(`http://localhost:3000/patients/${idUpdate}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(patientUpdateData),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.json();
+        })
+        .then((result) => {
+          console.log("Success:", result);
+          alert(`Dados do paciente de ID ${idUpdate} atualizados com sucesso`);
+          document.querySelector("#formUpdate").classList.add("hidden");
+          document.querySelector("#formUpdate").reset(); // Limpar entradas do formulário
+        })
+        .catch((error) => {
+          console.error("Error updating data:", error);
+          alert("Erro ao atualizar paciente");
+        });
     });
-  document.querySelector("#idUpdate").value="";
-  document.querySelector("#nameUpdate").value="";
-  document.querySelector("#sexUpdate").value="";
-  document.querySelector("#statusUpdate").value="";
+  });
+  // Close Modals
+  document.querySelectorAll(".close").forEach((button) => {
+    button.addEventListener("click", () => {
+      const form = button.closest(".modal");
+      if (form) {
+        form.classList.add("hidden");
+        form.querySelector("form").reset(); // Clear form inputs
+      }
+    });
+  });
 });
