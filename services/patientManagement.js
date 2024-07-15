@@ -85,42 +85,49 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // View Patient
-  document.querySelector("#input-view").addEventListener("submit", (event) => {
-    event.preventDefault();
-    const idView = document.querySelector("#idView").value;
-    if (idView === "") {
-      return;
-    }
+  // View Patient
+document.querySelector("#input-view").addEventListener("submit", (event) => {
+  event.preventDefault();
+  const idView = document.querySelector("#idView").value;
+  if (idView === "") {
+    return;
+  }
 
-    fetch(`http://localhost:3000/patients/${idView}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((result) => {
-        console.log("Resultado da requisição:", result);
-        if (result && result.name && result.status && result.sex) {
-          console.log("Success:", result);
-          alert(
-            `Paciente encontrado: Nome: ${result.name}, Status: ${result.status}, Sexo: ${result.sex}`
-          );
-          document.querySelector("#formView").classList.add("hidden");
-          document.querySelector("#input-view").reset(); // Clear form inputs
-        } else {
-          alert("Paciente não encontrado");
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
+  fetch(`http://localhost:3000/patients/${idView}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    return response.json();
+  })
+  .then((result) => {
+    console.log("Resultado da requisição:", result);
+    if (result && result.name && result.status && result.sex) {
+      console.log("Success:", result);
+      const patientInfo = `
+        Paciente encontrado:<br>
+        Nome: ${result.name}<br>
+        Status: ${result.status}<br>
+        Sexo: ${result.sex}
+      `;
+      document.querySelector("#patientInfo").innerHTML = patientInfo;
+      document.querySelector(".modal").classList.remove("hidden");
+      document.querySelector("#input-view").reset(); // Limpar os campos do formulário
+    } else {
+      alert("Paciente não encontrado");
+    }
+  })
+  .catch((error) => {
+    console.error("Error fetching data:", error);
   });
+});
+
+
 
   document.addEventListener("DOMContentLoaded", () => {
     // Mostrar formulário de atualização
