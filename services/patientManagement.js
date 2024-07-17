@@ -62,9 +62,14 @@ document.addEventListener("DOMContentLoaded", () => {
     })
       .then((response) => {
         if (!response.ok) {
-          throw new Error("Network response was not ok");
+          /* throw new Error("Network response was not ok"); */
+          if (response.status === 404) {
+            throw new Error("Paciente não encontrado");
+          } else {
+            throw new Error("Network response was not ok");
+          }
         }
-        return response.json();
+        return response.text();
       })
       .then((result) => {
         console.log("Success", result);
@@ -85,7 +90,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // View Patient
-  // View Patient
 document.querySelector("#input-view").addEventListener("submit", (event) => {
   event.preventDefault();
   const idView = document.querySelector("#idView").value;
@@ -101,6 +105,7 @@ document.querySelector("#input-view").addEventListener("submit", (event) => {
   })
   .then((response) => {
     if (!response.ok) {
+      alert("Desculpe, pacient nao encontrado.\n Verifique o id e tente novamente")
       throw new Error("Network response was not ok");
     }
     return response.json();
@@ -116,7 +121,7 @@ document.querySelector("#input-view").addEventListener("submit", (event) => {
         Sexo: ${result.sex}
       `;
       document.querySelector("#patientInfo").innerHTML = patientInfo;
-      document.querySelector(".modal").classList.remove("hidden");
+      document.querySelector("#patientModal").classList.remove("hidden");
       document.querySelector("#input-view").reset(); // Limpar os campos do formulário
     } else {
       alert("Paciente não encontrado");
@@ -126,7 +131,6 @@ document.querySelector("#input-view").addEventListener("submit", (event) => {
     console.error("Error fetching data:", error);
   });
 });
-
 
 
   document.addEventListener("DOMContentLoaded", () => {
@@ -174,6 +178,7 @@ document.querySelector("#input-view").addEventListener("submit", (event) => {
         });
     });
   });
+
   // Close Modals
   document.querySelectorAll(".close").forEach((button) => {
     button.addEventListener("click", () => {

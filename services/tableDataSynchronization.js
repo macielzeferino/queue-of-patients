@@ -40,13 +40,14 @@ function renderTable(data) {
   });
 }
 
-
+/* 
 document.addEventListener('DOMContentLoaded', () => {
-    const addButton = document.querySelector('.btn-add');
+   const addButton = document.querySelector('.btn-add');
     const viewButton = document.querySelector('.btn-view');
     const updateButton = document.querySelector('.btn-update');
     const deleteButton = document.querySelector('.btn-delete');
-  
+    const patientModal = document.querySelector('#patientModal')
+    const closePatient = document.querySelector('.closePatient') 
     const addModal = document.getElementById('formAdd');
     const viewModal = document.getElementById('formView');
     const updateModal = document.getElementById('formUpdate');
@@ -73,6 +74,8 @@ document.addEventListener('DOMContentLoaded', () => {
       deleteModal.classList.remove('hidden');
       deleteModal.style.display = 'block';
     });
+
+    cl
   
     closeButtons.forEach(button => {
       button.addEventListener('click', () => {
@@ -94,5 +97,5 @@ document.addEventListener('DOMContentLoaded', () => {
         deleteModal.style.display = 'none';
       }
     });
-  });
+  }); */
     
