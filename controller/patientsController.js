@@ -46,15 +46,24 @@ module.exports = {
     // Retornar os dados atualizados do paciente como JSON
     return res.json(updatedPatient);
   },
+  
+    async delete(req, res) {
+      try {
+        const id = req.params.id;
+        const patient = await Patients.findByPk(id);
+    
+        if (!patient) {
+          return res.status(404).send("Paciente não encontrado");
+        }
+    
+        await patient.destroy();
+        res.send("Paciente deletado com sucesso");
+      } catch (error) {
+        console.error("Erro ao tentar deletar o paciente:", error);
+        res.status(500).send("Erro interno do servidor");
+      }
+    },
 
-  async delete(req, res) {
-    await Patients.destroy({
-      where: {
-        id: req.params.id,
-      },
-    });
-    res.send("Paciente deletado");
-  }, 
   async list(req, res) {
     try {
         console.log("Buscando pacientes...");

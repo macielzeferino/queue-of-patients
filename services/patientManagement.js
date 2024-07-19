@@ -46,14 +46,13 @@ document.addEventListener("DOMContentLoaded", () => {
     form.classList.remove("hidden");
   });
 
-  // Remove Patient
   document.querySelector("#input-delete").addEventListener("submit", (event) => {
     event.preventDefault();
     const idPatient = document.querySelector("#idPatient").value;
     if (idPatient === "") {
       return;
     }
-
+  
     fetch(`http://localhost:3000/patients/${idPatient}`, {
       method: "DELETE",
       headers: {
@@ -62,26 +61,26 @@ document.addEventListener("DOMContentLoaded", () => {
     })
       .then((response) => {
         if (!response.ok) {
-          /* throw new Error("Network response was not ok"); */
           if (response.status === 404) {
             throw new Error("Paciente não encontrado");
           } else {
-            throw new Error("Network response was not ok");
+            throw new Error("Erro ao tentar deletar o paciente");
           }
         }
         return response.text();
       })
       .then((result) => {
         console.log("Success", result);
-        alert(`Paciente de id ${idPatient} deletado`);
+        alert(`Paciente de id ${idPatient} deletado com sucesso.`);
         document.querySelector("#formDelete").classList.add("hidden");
-        document.querySelector("#input-delete").reset(); // Clear form inputs
+        document.querySelector("#input-delete").reset(); // Limpa os campos do formulário
       })
       .catch((error) => {
         console.error("Error fetching data", error);
-        alert("Erro ao deletar paciente");
+        alert(error.message); // Exibe a mensagem de erro apropriada
       });
   });
+  
 
   // Show View Patient Form
   document.querySelector(".btn-view").addEventListener("click", () => {
