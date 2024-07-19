@@ -22,7 +22,6 @@
           </tr>
         </thead>
         <tbody>
-          <!-- Dynamic content here -->
         </tbody>
       </table>
     </section>
@@ -32,7 +31,7 @@
       <div class="buttons">
         <button class="btn btn-add">Adicionar pacientes</button>
         <button class="btn btn-view">Consultar pacientes</button>
-        <button class="btn btn-update">Atualizar dados do pacientes</button>
+        <button class="btn btn-update">Atualizar pacientes</button>
         <button class="btn btn-delete">Remover pacientes</button>
       </div>
     </section>
@@ -99,56 +98,57 @@
         <p id="patientInfo"></p>
       </div>
     </div>
-    
-    <div class="modal hidden" id="formUpdate">
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <form id="formUpdate">
-          <div>
-            <label for="idUpdate">Digite o ID do paciente que deseja atualizar:</label>
-            <input type="text" name="idUpdate" id="idUpdate">
-          </div>
-          <br>
-          <div>
-            <label for="nameUpdate">Nome do paciente:</label>
-            <input type="text" name="nameUpdate" id="nameUpdate">
-          </div>
-          <br>
-          <fieldset>
-            <legend>Status:</legend>
-            <div>
-              <input type="radio" name="statusUpdate" id="singleUpdate" value="single">
-              <label for="singleUpdate">em fila</label>
-            </div>
-            <div>
-              <input type="radio" name="statusUpdate" id="marriedUpdate" value="married">
-              <label for="marriedUpdate">consultando</label>
-            </div>
-            <div>
-              <input type="radio" name="statusUpdate" id="divorcedUpdate" value="divorced">
-              <label for="divorcedUpdate">em observação</label>
-            </div>
-            <div>
-              <input type="radio" name="statusUpdate" id="widowedUpdate" value="widowed">
-              <label for="widowedUpdate">consultado</label>
-            </div>
-          </fieldset>
-          <br>
-          <fieldset>
-            <legend>Gênero:</legend>
-            <div>
-              <input type="radio" name="sexUpdate" id="MUpdate" value="M">
-              <label for="MUpdate">Masculino</label>
-            </div>
-            <div>
-              <input type="radio" name="sexUpdate" id="FUpdate" value="F">
-              <label for="FUpdate">Feminino</label>
-            </div>
-          </fieldset>
-          <button type="submit">Enviar</button>
-        </form>
+  
+ <div class="modal hidden" id="formUpdateContent">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <form id="formUpdate">
+      <div>
+        <label for="idUpdate">Digite o ID do paciente que deseja atualizar:</label>
+        <input type="text" name="idUpdate" id="idUpdate">
       </div>
-    </div>
+      <br>
+      <div>
+        <label for="nameUpdate">Nome do paciente:</label>
+        <input type="text" name="nameUpdate" id="nameUpdate">
+      </div>
+      <br>
+      <fieldset>
+        <legend>Status:</legend>
+        <div>
+          <input type="radio" name="statusUpdate" id="singleUpdate" value="single">
+          <label for="singleUpdate">em fila</label>
+        </div>
+        <div>
+          <input type="radio" name="statusUpdate" id="marriedUpdate" value="married">
+          <label for="marriedUpdate">consultando</label>
+        </div>
+        <div>
+          <input type="radio" name="statusUpdate" id="divorcedUpdate" value="divorced">
+          <label for="divorcedUpdate">em observação</label>
+        </div>
+        <div>
+          <input type="radio" name="statusUpdate" id="widowedUpdate" value="widowed">
+          <label for="widowedUpdate">consultado</label>
+        </div>
+      </fieldset>
+      <br>
+      <fieldset>
+        <legend>Gênero:</legend>
+        <div>
+          <input type="radio" name="sexUpdate" id="MUpdate" value="M">
+          <label for="MUpdate">Masculino</label>
+        </div>
+        <div>
+          <input type="radio" name="sexUpdate" id="FUpdate" value="F">
+          <label for="FUpdate">Feminino</label>
+        </div>
+      </fieldset>
+      <button type="submit">Enviar</button>
+    </form>
+  </div>
+</div>
+
 
     <div class="modal hidden" id="formDelete">
       <div class="modal-content">

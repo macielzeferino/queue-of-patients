@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-  });
+  })});
 
   // Show Remove Patient Form
   document.querySelector(".btn-delete").addEventListener("click", () => {
@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
       })
       .catch((error) => {
         console.error("Error fetching data", error);
-        alert(error.message); // Exibe a mensagem de erro apropriada
+        alert(error.message); 
       });
   });
   
@@ -133,14 +133,13 @@ document.querySelector("#input-view").addEventListener("submit", (event) => {
 
 
   document.addEventListener("DOMContentLoaded", () => {
-    // Mostrar formulário de atualização
     document.querySelector(".btn-update").addEventListener("click", () => {
       const form = document.querySelector("#formUpdate");
       form.classList.remove("hidden");
-    });
+    })});
   
     // Atualizar paciente
-    document.querySelector("#formUpdate").addEventListener("submit", (event) => {
+/*     document.querySelector("#formUpdate").addEventListener("submit", (event) => {
       event.preventDefault();
       const idUpdate = document.querySelector("#idUpdate").value;
       const nameUpdate = document.querySelector("#nameUpdate").value;
@@ -176,7 +175,53 @@ document.querySelector("#input-view").addEventListener("submit", (event) => {
           alert("Erro ao atualizar paciente");
         });
     });
-  });
+  }); */
+
+  document.addEventListener("DOMContentLoaded", () => {
+    // Show Update Patient Form
+    document.querySelector(".btn-update").addEventListener("click", () => {
+      const form = document.querySelector("#formUpdateContent");
+      form.classList.remove("hidden");
+    });
+  
+    // Atualizar paciente
+    document.querySelector("#formUpdate").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const idUpdate = document.querySelector("#idUpdate").value;
+      const nameUpdate = document.querySelector("#nameUpdate").value;
+      const statusUpdate = document.querySelector('input[name="statusUpdate"]:checked').value;
+      const sexUpdate = document.querySelector('input[name="sexUpdate"]:checked').value;
+      const patientUpdateData = {
+        name: nameUpdate,
+        status: statusUpdate,
+        sex: sexUpdate,
+      };
+  
+      fetch(`http://localhost:3000/patients/${idUpdate}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(patientUpdateData),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.json();
+        })
+        .then((result) => {
+          console.log("Success:", result);
+          alert(`Dados do paciente de ID ${idUpdate} atualizados com sucesso`);
+          document.querySelector("#formUpdateContent").classList.add("hidden");
+          document.querySelector("#formUpdate").reset(); // Limpar entradas do formulário
+        })
+        .catch((error) => {
+          console.error("Error updating data:", error);
+          alert("Erro ao atualizar paciente");
+        });
+    });
+
 
   // Close Modals
   document.querySelectorAll(".close").forEach((button) => {
