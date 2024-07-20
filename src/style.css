@@ -202,3 +202,27 @@ input[type="radio"] {
   font-size: 1.2rem; /* Aumenta o tamanho do texto dos botões */
   border-radius: 8px; /* Arredonda as bordas dos botões */
 }
+
+/* Estilos para o contêiner do paciente */
+#patientInfo {
+  background-color: #f9f9f9; /* Cor de fundo clara */
+  border: 1px solid #ccc; /* Borda cinza clara */
+  padding: 15px; /* Espaçamento interno */
+  border-radius: 8px; /* Cantos arredondados */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  max-width: 600px; /* Largura máxima */
+  margin: 20px auto; /* Margem superior/inferior */
+  font-family: Arial, sans-serif; /* Fonte */
+  color: #333; /* Cor do texto */
+}
+
+/* Estilo para o título */
+#patientInfo h2 {
+  margin-top: 0;
+  color: #4CAF50; /* Cor azul para o título */
+}
+
+/* Estilo para os rótulos */
+#patientInfo p strong {
+  font-weight: bold; /* Texto em negrito */
+}

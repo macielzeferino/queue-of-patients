@@ -114,10 +114,10 @@ document.querySelector("#input-view").addEventListener("submit", (event) => {
     if (result && result.name && result.status && result.sex) {
       console.log("Success:", result);
       const patientInfo = `
-        Paciente encontrado:<br>
-        Nome: ${result.name}<br>
-        Status: ${result.status}<br>
-        Sexo: ${result.sex}
+        <h2>Paciente encontrado:</h2>
+        <strong>Nome:</strong> ${result.name}<br><br>
+        <strong>Status:</strong> ${result.status}<br><br>
+        <strong>Sexo:</strong> ${result.sex}
       `;
       document.querySelector("#patientInfo").innerHTML = patientInfo;
       document.querySelector("#patientModal").classList.remove("hidden");
