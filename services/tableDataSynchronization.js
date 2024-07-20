@@ -1,7 +1,7 @@
-setInterval(fetchData, 10000)
-
+setInterval(fetchData, 1000)
+// search patients 
 function fetchData() {
-  fetch('http://localhost:3000/patients') // URL para buscar todos os pacientes
+  fetch('http://localhost:3000/patients')
       .then(response => {
           if (!response.ok) {
               throw new Error('Network response was not ok ' + response.statusText);
@@ -11,11 +11,10 @@ function fetchData() {
       .then(data => renderTable(data))
       .catch(error => console.error('Erro ao buscar dados:', error));
 }
-
+// update table
 function renderTable(data) {
   const tableBody = document.querySelector('.patients-list tbody');
-  tableBody.innerHTML = ''; // Limpa o corpo da tabela antes de adicionar os dados
-
+  tableBody.innerHTML = '';
   data.forEach(item => {
       const row = document.createElement('tr');
       
@@ -39,63 +38,3 @@ function renderTable(data) {
       tableBody.appendChild(row);
   });
 }
-
-/* 
-document.addEventListener('DOMContentLoaded', () => {
-   const addButton = document.querySelector('.btn-add');
-    const viewButton = document.querySelector('.btn-view');
-    const updateButton = document.querySelector('.btn-update');
-    const deleteButton = document.querySelector('.btn-delete');
-    const patientModal = document.querySelector('#patientModal')
-    const closePatient = document.querySelector('.closePatient') 
-    const addModal = document.getElementById('formAdd');
-    const viewModal = document.getElementById('formView');
-    const updateModal = document.getElementById('formUpdate');
-    const deleteModal = document.getElementById('formDelete');
-  
-    const closeButtons = document.querySelectorAll('.close');
-  
-    addButton.addEventListener('click', () => {
-      addModal.classList.remove('hidden');
-      addModal.style.display = 'block';
-    });
-  
-    viewButton.addEventListener('click', () => {
-      viewModal.classList.remove('hidden');
-      viewModal.style.display = 'block';
-    });
-  
-    updateButton.addEventListener('click', () => {
-      updateModal.classList.remove('hidden');
-      updateModal.style.display = 'block';
-    });
-  
-    deleteButton.addEventListener('click', () => {
-      deleteModal.classList.remove('hidden');
-      deleteModal.style.display = 'block';
-    });
-
-    cl
-  
-    closeButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        addModal.style.display = 'none';
-        viewModal.style.display = 'none';
-        updateModal.style.display = 'none';
-        deleteModal.style.display = 'none';
-      });
-    });
-  
-    window.addEventListener('click', (event) => {
-      if (event.target == addModal) {
-        addModal.style.display = 'none';
-      } else if (event.target == viewModal) {
-        viewModal.style.display = 'none';
-      } else if (event.target == updateModal) {
-        updateModal.style.display = 'none';
-      } else if (event.target == deleteModal) {
-        deleteModal.style.display = 'none';
-      }
-    });
-  }); */
-    
