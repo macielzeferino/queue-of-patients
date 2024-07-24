@@ -103,7 +103,7 @@ document.querySelector("#input-view").addEventListener("submit", (event) => {
     .then((response) => {
       if (!response.ok) {
         alert(
-          "Desculpe, pacient nao encontrado.\n Verifique o id e tente novamente"
+          "Desculpe, paciente não encontrado.\n Verifique o id e tente novamente"
         );
         throw new Error("Network response was not ok");
       }
